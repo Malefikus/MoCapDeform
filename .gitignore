@@ -1,4 +1,6 @@
 models/*
+!models/link_to_download.md
 dataset/*
+!dataset/link_to_download.md
 __pycache__
 */__pycache__
