@@ -9,7 +9,6 @@ import json
 import pickle
 import sys
 import trimesh
-import cv2
 from smplx import SMPL, SMPLX
 import pdb
 

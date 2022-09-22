@@ -2,6 +2,8 @@ import os
 import numpy as np
 from smplx import SMPLX
 import pdb
+
+
 class SMPLXProcessor():
     def __init__(self, human_model_path):
 
