@@ -22,7 +22,7 @@ import trimesh
 import sys
 from posa_contacts import misc_utils, posa_utils, data_utils
 from posa_contacts.cmd_parser import parse_config
-import newdata_utils
+from utils import newdata_utils
 import pdb
 
 if __name__ == '__main__':

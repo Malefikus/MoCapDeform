@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from sklearn.cluster import DBSCAN
 import copy
-import newdata_utils
+from utils import newdata_utils
 import pdb
 
 class Raycast_Operation():

@@ -4,55 +4,12 @@ import trimesh
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import newdata_utils
-import dist_chamfer as ext
-from smplx import SMPL, SMPLX
+from utils import newdata_utils
+from utils import dist_chamfer as ext
+from utils.misc import *
+from utils.smplx_util import SMPLXProcessor
 from tqdm import tqdm
-from smplx_util import SMPLXProcessor
 import pdb
-
-
-class GMoF(nn.Module):
-    def __init__(self, rho=1):
-        super(GMoF, self).__init__()
-        self.rho = rho
-
-    def extra_repr(self):
-        return 'rho = {}'.format(self.rho)
-
-    def forward(self, residual):
-        squared_res = residual ** 2
-        dist = torch.div(squared_res, squared_res + self.rho ** 2)
-        return self.rho ** 2 * dist
-
-class GMoF_unscaled(nn.Module):
-    def __init__(self, rho=1):
-        super(GMoF_unscaled, self).__init__()
-        self.rho = rho
-
-    def extra_repr(self):
-        return 'rho = {}'.format(self.rho)
-
-    def forward(self, residual):
-        squared_res = residual ** 2
-        dist = torch.div(squared_res, squared_res + self.rho ** 2)
-        return dist
-
-def proj_op(points_3d, cam_in, cam_k):
-    fx, fy = cam_in[0][0], cam_in[1][1]
-    cx, cy = cam_in[0][2], cam_in[1][2]
-    # camera distortion coefficients
-    k1, k2, p1, p2, k3 = cam_k[0], cam_k[1], cam_k[2], cam_k[3], cam_k[4]
-    xp = points_3d[:, 0] / points_3d[:, 2]
-    yp = points_3d[:, 1] / points_3d[:, 2]
-    r2 = xp.pow(2) + yp.pow(2)
-    r4, r6 = r2.pow(2), r2.pow(3)
-    xpp = xp*(1+k1*r2+k2*r4+k3*r6) + 2*p1*xp*yp + p2*(r2+2*xp.pow(2))
-    ypp = yp*(1+k1*r2+k2*r4+k3*r6) + 2*p2*xp*yp + p1*(r2+2*yp.pow(2))
-    u = fx * xpp + cx
-    v = fy * ypp + cy
-    proj_pnts = torch.cat((u.unsqueeze(1), v.unsqueeze(1)), 1)
-    return proj_pnts
 
 
 def optimise_pipline(frame_num, frame_num_prev, seq_name,
