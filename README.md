@@ -33,6 +33,9 @@ All the models are provided by the original repositories.
 We utilise [smplify-x](https://github.com/vchoutas/smplify-x) for initialisation.
 The results are stored at `dataset/subject/RGB`.
 
+As the smplify-x optimisation doesn't always converge,
+we store the converged frame number in `dataset/subject/avail_frms.npy`
+
 To generate the smplify-x results, we need to get [openpose](https://github.com/CMU-Perceptual-Computing-Lab/openpose)
 2d keypoint detection results which are stored at `dataset/subject/keypoints`.
 
