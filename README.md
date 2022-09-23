@@ -1,6 +1,6 @@
 # MoCapDeform
 Code and data release for the paper
-[*MoCapDeform: Monocular 3D Human Motion Capture in Deformable Scenes*] (https://4dqv.mpi-inf.mpg.de/MoCapDeform/)
+[*MoCapDeform: Monocular 3D Human Motion Capture in Deformable Scenes*](https://4dqv.mpi-inf.mpg.de/MoCapDeform/)
 (3DV 2022 best student paper award :3).
 
 ## Prerequisites
