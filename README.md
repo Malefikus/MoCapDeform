@@ -42,19 +42,27 @@ and [POSA](https://github.com/mohamedhassanmus/POSA) please refer to their code.
 ### Stage2: Global Pose Optimisation
 First generate body-centric human contacts with [POSA](https://github.com/mohamedhassanmus/POSA):
 
->python gen_contacts.py --config posa_contacts/contact.yaml
+```Shell
+python gen_contacts.py --config posa_contacts/contact.yaml
+```
 
 Then generate tight human masks with [PointRend](https://github.com/facebookresearch/detectron2):
 
->python gen_mask.py
+```Shell
+python gen_mask.py
+```
 
 Next, get scene contacts by raycasting:
 
->python gen_raycast.py
+```Shell
+python gen_raycast.py
+```
 
 At last, run stage2 optimisation:
 
->python optimise-stage2.py
+```Shell
+python optimise-stage2.py
+```
 
 Optimised human poses are then stored at `dataset/subject/stage2.npy`.
 
@@ -70,12 +78,14 @@ in the experiments in our paper we adopt the trained [VMNet](https://github.com/
 ## Citation
 If you find our work useful, please kindly cite:
 
->@inproceedings{Li_3DV2022,
+```
+@inproceedings{Li_3DV2022,
     title={MoCapDeform: Monocular 3D Human Motion Capture in Deformable Scenes},
     author={Zhi Li and Soshi Shimada and Bernt Schiele and Christian Theobalt and Vladislav Golyanik},
     booktitle = {International Conference on 3D Vision (3DV)},
     year={2022}
 }
+```
 
 ## Contact
 For questions, clarifications, please get in touch with:
